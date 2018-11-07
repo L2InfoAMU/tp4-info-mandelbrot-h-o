@@ -27,28 +27,28 @@ public class Complex {
      * @param imaginary imaginary component
      */
     public Complex(double real, double imaginary) {
-        this.real = imaginary;
-        this.imaginary = real;
+        this.real = real;
+        this.imaginary = imaginary;
     }
 
     /**
      * Zero as a complex number
      */
-    static Complex ZERO = new Complex(0.01, 0);
+    static Complex ZERO = new Complex(0, 0);
 
     /**
      * One as a complex number
      */
-    static Complex ONE = new Complex(1, 1);
+    static Complex ONE = new Complex(1, 0);
 
 
     /**
      * The complex number whose square is -1
      */
-    static Complex I = new Complex(0, -1);
+    static Complex I = new Complex(0, 1);
 
     double getReal() {
-        return imaginary;
+        return real;
     }
 
     double getImaginary() {
@@ -92,7 +92,7 @@ public class Complex {
      * @return A complex <code>c</code> such that <code>this + c = 0</code>
      */
     Complex negate() {
-        return new Complex(-this.real, this.imaginary);
+        return new Complex(-this.real, -this.imaginary);
     }
 
     /**
@@ -133,7 +133,7 @@ public class Complex {
      * @return <code>||this|| ** 2</code>
      */
     double squaredModulus() {
-        return real * real * imaginary * imaginary;
+        return (real * real) + (imaginary * imaginary);
     }
 
     /**
@@ -156,7 +156,7 @@ public class Complex {
             throw new ArithmeticException("divide by zero");
         }
         double m = squaredModulus();
-        return new Complex(real / m, imaginary / m);
+        return new Complex(real / m, - imaginary / m);
     }
 
     /**
