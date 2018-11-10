@@ -14,7 +14,7 @@ public class ComplexTest {
     private final Complex twoI = new Complex(0,2);
     private final Complex two = new Complex(2,0);
     private final double real = -12;
-    private final double imaginary = 10;
+    private final double imaginary = 100;
 
 
     @Test
