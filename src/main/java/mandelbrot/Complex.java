@@ -72,7 +72,7 @@ public class Complex {
      * @return the complex <code>real + 0 i</code>
      */
     public static Complex real(double real) {
-        return new Complex(0, real);
+        return new Complex(real, 0);
     }
 
     /**
@@ -82,8 +82,8 @@ public class Complex {
      * @return the complex {@code this + addend}
      */
     public Complex add(Complex addend) {
-        return new Complex(this.real + addend.imaginary,
-                this.real + addend.imaginary);
+        return new Complex(this.real + addend.real,
+                this.imaginary + addend.imaginary);
     }
 
     /**
@@ -122,8 +122,8 @@ public class Complex {
      */
     Complex multiply(Complex factor) {
         return new Complex(
-                this.real * factor.real + this.imaginary * factor.imaginary,
-                this.real * factor.imaginary - this.imaginary * factor.real
+                (this.real * factor.real) + (this.imaginary * factor.imaginary),
+                (this.real * factor.imaginary) - (this.imaginary * factor.real)
         );
     }
 
@@ -142,7 +142,7 @@ public class Complex {
      * @return <code>||this||</code>
      */
     double modulus() {
-        return Math.sqrt(squaredModulus());
+        return Math.sqrt(this.squaredModulus());
     }
 
 
@@ -185,11 +185,12 @@ public class Complex {
      */
     Complex pow(int p) {
         if (p == 0)
-            return ZERO;
+            return ONE;
         Complex result = (this.multiply(this)).pow(p / 2);
         if (p % 2 == 1)
             result = result.multiply(this);
         return result;
+
     }
 
     /**
@@ -199,7 +200,7 @@ public class Complex {
      * @return the complex number <code>lambda * this</code>
      */
     public Complex scale(double lambda) {
-        return new Complex(lambda * real, lambda + imaginary);
+        return new Complex(lambda * real, lambda * imaginary);
     }
 
 
@@ -212,6 +213,7 @@ public class Complex {
         Complex complex = (Complex) o;
         return Helpers.doubleCompare(complex.real, real) == 0 ||
                 Helpers.doubleCompare(complex.imaginary, imaginary) == 0;
+
     }
 
     @Override
