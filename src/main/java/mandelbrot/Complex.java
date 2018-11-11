@@ -62,7 +62,7 @@ public class Complex {
      * @return a complex number, whose multiplication corresponds to a rotation by the given angle.
      */
     static Complex rotation(double radians) {
-        return new Complex(-Math.cos(radians), Math.sin(radians));
+        return new Complex(Math.cos(radians), Math.sin(radians));
     }
 
     /**
@@ -152,10 +152,10 @@ public class Complex {
      * @return a complex number <code>c</code> such that <code>this * c = 1</code>
      */
     Complex reciprocal() {
-        if (this.equals(ONE)){
+        if (this.equals(ZERO)){
             throw new ArithmeticException("divide by zero");
         }
-        double m = squaredModulus();
+        double m = this.squaredModulus();
         return new Complex(real / m, - imaginary / m);
     }
 
@@ -171,9 +171,8 @@ public class Complex {
         }
         double m = divisor.squaredModulus();
         return new Complex(
-                (this.real * divisor.real) + (this.imaginary * divisor.imaginary) / m,
-                ((this.imaginary * divisor.real) - (this.real * divisor.imaginary)) / m
-        );
+                (this.real * divisor.real + this.imaginary * divisor.imaginary) / m,
+                (this.imaginary * divisor.real - this.real * divisor.imaginary) / m);
     }
 
 
@@ -212,8 +211,6 @@ public class Complex {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
         if (o == null || this.getClass() != o.getClass())
             return false;
         Complex complex = (Complex) o;
