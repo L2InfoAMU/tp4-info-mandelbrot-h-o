@@ -137,5 +137,13 @@ public class ComplexTest {
     void testReal(){
         assertEquals(Complex.ONE, new Complex(real,imaginary).real(1));
         assertEquals(Complex.ZERO, new Complex(real,imaginary).real(0));
+        assertEquals(two, new Complex(real,imaginary).real(2));
+        assertEquals(new Complex(real,0), new Complex(real,imaginary).real(real));
+    }
+    @Test
+    void testAdd(){
+        assertEquals(onePlusI, new Complex(0,0).add(onePlusI));
+        assertEquals(onePlusI, new Complex(1,0).add(Complex.I));
+        assertEquals(Complex.ONE, onePlusI.add(minusI));
     }
 }
