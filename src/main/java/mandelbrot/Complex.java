@@ -186,10 +186,16 @@ public class Complex {
     Complex pow(int p) {
         if (p == 0)
             return ONE;
-        Complex result = (this.multiply(this)).pow(p / 2);
+        /*Complex result = (this.multiply(this)).pow(p / 2);
         if (p % 2 == 1)
             result = result.multiply(this);
-        return result;
+        return result;*/
+        Complex result = this ;
+        for(int fact = 0 ; fact < p ; fact++){
+            result = result.multiply(this);
+        }
+        return result ;
+
 
     }
 
@@ -208,10 +214,10 @@ public class Complex {
     public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || this.getClass() != o.getClass())
             return false;
         Complex complex = (Complex) o;
-        return Helpers.doubleCompare(complex.real, real) == 0 ||
+        return Helpers.doubleCompare(complex.real, real) == 0 &&
                 Helpers.doubleCompare(complex.imaginary, imaginary) == 0;
 
     }
