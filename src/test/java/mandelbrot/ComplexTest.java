@@ -166,4 +166,17 @@ public class ComplexTest {
         assertEquals(2 , twoI.modulus());
         assertEquals(Math.sqrt(2) , onePlusI.modulus());
     }
+    @Test
+    void testPow(){
+        assertEquals(twoI , onePlusI.pow(2));
+        assertEquals( new Complex(3 , 4 ), new Complex(2 , 1).pow(2) );
+        assertEquals( onePlusI.pow(3), new Complex(-2 , 2) );
+        assertEquals( Complex.I.pow(3), new Complex(0 , -1) );
+    }
+    @Test
+    void testScale(){
+        assertEquals(Complex.I.scale(2) , twoI);
+        assertEquals(Complex.ONE.scale(2) , two);
+        assertEquals(Complex.ZERO.scale(2) , Complex.ZERO);
+    }
 }
