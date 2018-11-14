@@ -179,4 +179,12 @@ public class ComplexTest {
         assertEquals(Complex.ONE.scale(2) , two);
         assertEquals(Complex.ZERO.scale(2) , Complex.ZERO);
     }
+    @Test
+    void testEquals(){
+        assertEquals(Complex.I.equals(new Complex(0 , 1)), true);
+        assertEquals(onePlusI.equals(new Complex(1 , 1)), true);
+        assertEquals(onePlusI.equals(new Complex(1 , 1)), true);
+        assertEquals(twoI.equals(new Complex(0 , 2)), true);
+        assertEquals(Complex.ZERO.equals((new Complex(0 , 0))), true);
+    }
 }
